@@ -63,21 +63,21 @@ class TestCalc:
     #     print(f"a={a},b={b},result={result}")
     #     assert result == round(get_instance.add(a, b), 2)
 
-    # TODO: 完善相加功能
+    # 新增加法用例
     @pytest.mark.parametrize("a, b, result", add_int_data[0], ids=add_int_data[1])
     def test_add1(self,get_instance, a, b, result):
         print(f"a={a}, b={b}, result={result}")
         assert result== get_instance.add(a,b)
 
 
-    # TODO: 相除功能
+#新增除法用例
     @pytest.mark.parametrize("a, b, result", div_int_data[0], ids=div_int_data[1])
     def test_div(self, get_instance, a, b, result):
-        if result== round(get_instance.div(a, b)):
-            assert result== round(get_instance.div(a, b))
-        elif b==0:
+        if b==0:
             with pytest.raises(ZeroDivisionError):
-                print('除数不可以为0') #12
-
+                print('除数不可以为0')
+        else:
+            result=get_instance.div(a, b)
+            assert round(result,2)==round(get_instance.div(a, b),2)
 
 
